@@ -16,6 +16,9 @@ Including another URLconf
 
 from django.urls import path
 
+from calculator.views import assistant
+
 urlpatterns = [
+    path('<str:name>/', assistant)
     # здесь зарегистрируйте вашу view-функцию
 ]
