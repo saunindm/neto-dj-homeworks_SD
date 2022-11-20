@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+</head>
+<body>
+{% for e in page %}
+<div class="container">
+    <div class="header">
+        <h1><a href="/books">Каталог</a></h1>
+    </div>
+    <div class="row">
+        <div class="book col-md-4">
+            {% for book in books_page_list %}
+            <h2>{{ book.name }}</h2>
+            <p>{{ book.author }}</p>
+            <p>{{ book.pub_date }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% if page.has_previous %}
+<a class="button button-primary" href="{% url 'pub_date' pub_date=previous_pub_date %}"><button>{{ previous_pub_date }}</button></a>
+{% endif %}
+{% if page.has_next %}
+<a class="button button-primary" href="{% url 'pub_date' pub_date=next_pub_date %}"><button>{{ next_pub_date }}</button></a>
+{% endif %}
+</body>
+</html>
