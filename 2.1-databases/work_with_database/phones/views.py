@@ -25,3 +25,18 @@ def show_product(request, slug):
     phone = get_object_or_404(Phone, slug=slug)
     context = {'phone': phone}
     return render(request, template, context)
+
+# Менять порядок отображения товаров в каталоге можно более простым и лаконичным способом.
+#
+# ```
+# def show_catalog(request):
+#
+# SORT_MAP = {
+# 'name': 'name',
+# 'min_price': 'price',
+# 'max_price': '-price',
+# }
+# ...
+# sort = request.GET.get('sort')
+# if sort:
+# phones = phones.orderby(SORTMAP[sort])

@@ -21,3 +21,7 @@ class Command(BaseCommand):
                 )
                 phone_obj.save()
         pass
+
+
+# В скрипте для переноса данных можно использовать метод create чтобы создавать и сохранять объект в один шаг.
+# https://docs.djangoproject.com/en/4.0/ref/models/querysets/#create
