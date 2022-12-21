@@ -35,3 +35,21 @@ def book(request, pub_date):
     }
     template = 'books/pagi.html'
     return render(request, template, context)
+
+
+# Касаемо второго дополнительного задания. В этом задании не нужно использовать встроенный Django-пагинатор. У него несколько иной функционал который под это
+# задание не подходит. Есть более простой вариант. Отправляя url-запрос с конкретной датой вы получаете эту дату как обычную переменную. Книги нужно отфильтровать
+# по дате получив тем самым книгу с заданной датой, а так же следующей и предыдущей. Посмотрите в документации про фильтры “больше”, "меньше"
+# https://docs.djangoproject.com/en/4.0/topics/db/queries/#filters-can-reference-fields-on-the-model
+# Пример
+# def books_pub_date(request, pub_date):
+#     template = 'books/books_list.html'
+#     books_objects = Book.objects.filter(pub_date=pub_date)
+#     books_next = Book.objects.filter(pub_date__gt=pub_date).order_by('pub_date').first()
+#     books_previous = Book.objects.filter(pub_date__lt=pub_date).order_by('-pub_date').first()
+#     context = {
+#         'books': books_objects,
+#         'next_book': books_next,
+#         'previous_book': books_previous,
+#     }
+#     return render(request, template, context)

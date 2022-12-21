@@ -28,3 +28,7 @@ def workdir_view(request):
     files_list = os.listdir(base_path)
     msg = f'Список файлов в рабочей директории: {files_list}'
     return HttpResponse(msg)
+
+# Здравствуйте, Дмитрий! Вы успешно справились с первым заданием по курсу Django!
+# Добавлю лишь один небольшой совет если вы не против) Используйте функцию strftime модуля datetime чтобы отформатировать отображение времени на странице
+# https://docs-python.ru/standart-library/modul-datetime-python/kody-formatirovanija-strftime-strptime-modulja-datetime/

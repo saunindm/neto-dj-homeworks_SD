@@ -26,17 +26,16 @@ def show_product(request, slug):
     context = {'phone': phone}
     return render(request, template, context)
 
+# Первое задание сделано хорошо, но пару замечаний все же добавлю. В скрипте для переноса данных можно использовать метод create чтобы создавать и
+# сохранять объект в один шаг.
+# https://docs.djangoproject.com/en/4.0/ref/models/querysets/#create
 # Менять порядок отображения товаров в каталоге можно более простым и лаконичным способом.
-#
-# ```
 # def show_catalog(request):
-#
-# SORT_MAP = {
-# 'name': 'name',
-# 'min_price': 'price',
-# 'max_price': '-price',
-# }
-# ...
+#   SORT_MAP = {
+#       'name': 'name',
+#       'min_price': 'price',
+#       'max_price': '-price',
+#   }
 # sort = request.GET.get('sort')
 # if sort:
-# phones = phones.orderby(SORTMAP[sort])
+#   phones = phones.orderby(SORTMAP[sort])

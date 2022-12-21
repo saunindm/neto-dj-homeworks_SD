@@ -21,8 +21,14 @@ def bus_stations(request):
     paginator = Paginator(stations_list, 10)
     page = paginator.get_page(page_number)
     page_stations_list = stations_list[(page_number - 1) * 10: page_number * 10]
+    print(page.has_next())
     context = {
-         'bus_stations': page_stations_list,
+         'bus_stations': page.object_list,
          'page': page,
     }
     return render(request, 'stations/index.html', context)
+
+# Такого рода вычисления
+# page_stations_list = stations_list[(page_number - 1) * 10: page_number * 10]
+# нам ни к чему. Информация о списке станций на текущей странице хранится в page.object_list
+# Зачтено. Хорошего понедельника!

@@ -20,7 +20,7 @@ DATA = {
 }
 
 
-def assistant(request, name):
+def assistant(request, name):e
     servings = int(request.GET.get('servings', 1))
     recipe = DATA.get(name).copy()
     for ingredient in recipe:
@@ -38,3 +38,11 @@ def assistant(request, name):
 #     'ингредиент2': количество2,
 #   }
 # }
+
+# Здравствуйте, Дмитрий! Благодарю за выполненную работу.
+# Добавлю пару комментариев как Вы просили)
+# Нужно учесть что servings опциональный параметр, а значит его может и не быть в запросе. Этот момент нужно контролировать примерно таким образом:
+# if(int(request.GET.get('servings', 1))):
+# 	...
+# else:
+# 	...
