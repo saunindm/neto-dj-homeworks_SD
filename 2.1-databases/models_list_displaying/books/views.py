@@ -28,7 +28,7 @@ def book(request, pub_date):
     paginator = Paginator(books, 1)
     page = paginator.get_page(page_number)
     context = {
-        'books_page_list': page.object_list,
+        'books': page.object_list,
         'previous_pub_date': pub_dates_dict.get(f"{page_number - 1}"),
         'next_pub_date': pub_dates_dict.get(f"{page_number + 1}"),
         'page': page,
