@@ -46,7 +46,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         creating_user = self.context["request"].user.id
         if not creating_user:
             raise ValidationError('Error:only for registered users')
-        if self.context['request'].method == 'PATCH' and data.get('status') is not 'CLOSED':
+        if self.context['request'].method == 'PATCH' and data.get('status') == 'CLOSED':
             return data
         user_open_adv_limit = len(Advertisement.objects.filter(creator=creating_user, status='OPEN'))
         if user_open_adv_limit > 10:
