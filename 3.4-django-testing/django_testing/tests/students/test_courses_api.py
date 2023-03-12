@@ -30,11 +30,11 @@ def student_factory():
 @pytest.mark.django_db
 def test_get_first_course(client, course_factory):
     courses = course_factory(_quantity=10)
-    url = reverse('courses-list')
-    response = client.get(url)
+    url = reverse('courses-detail', args=[courses[0].id])
+    response = client.get(url, data={'id': courses[0].id})
     assert response.status_code == 200
     data = response.json()
-    assert data[0]['id'] == courses[0].id
+    assert data['id'] == courses[0].id
 
 
 # проверка получения списка курсов (list-логика):
@@ -105,6 +105,8 @@ def test_delete_courses(client, course_factory):
 
 # тест ограничения числа студентов на курсе
 @pytest.mark.parametrize("count", [19, 21])
-def test_with_specific_settings(count, settings):
+@pytest.mark.parametrize("is_valid", [True])
+def test_with_specific_settings(count, is_valid, settings):
     settings.MAX_STUDENTS_PER_COURSE = 20
-    assert count <= settings.MAX_STUDENTS_PER_COURSE
+    res = count <= settings.MAX_STUDENTS_PER_COURSE
+    assert res == is_valid
